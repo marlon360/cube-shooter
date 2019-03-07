@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 892d16b84693e4503a6f8b307eb7fb2c
+timeCreated: 1486487812
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: body
+    100002: body 1
+    100004: body3
+    100006: eyeL
+    100008: eyeR
+    100010: handL
+    100012: handL 1
+    100014: handL 2
+    100016: handR
+    100018: handR 1
+    100020: handR 2
+    100022: head
+    100024: head 1
+    100026: head 2
+    100028: zombie
+    100030: zombie1
+    100032: //RootNode
+    400000: body
+    400002: body 1
+    400004: body3
+    400006: eyeL
+    400008: eyeR
+    400010: handL
+    400012: handL 1
+    400014: handL 2
+    400016: handR
+    400018: handR 1
+    400020: handR 2
+    400022: head
+    400024: head 1
+    400026: head 2
+    400028: zombie
+    400030: zombie1
+    400032: //RootNode
+    2300000: body3
+    2300002: eyeL
+    2300004: eyeR
+    2300006: handL 2
+    2300008: handR 2
+    2300010: head 2
+    3300000: body3
+    3300002: eyeL
+    3300004: eyeR
+    3300006: handL 2
+    3300008: handR 2
+    3300010: head 2
+    4300000: head
+    4300002: eyeL
+    4300004: eyeR
+    4300006: body3
+    4300008: handL
+    4300010: handR
+    7400000: walk
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: zombie
+        weight: 1
+      - path: zombie/body
+        weight: 1
+      - path: zombie/body/body3
+        weight: 1
+      - path: zombie/handL
+        weight: 1
+      - path: zombie/handL/handL 2
+        weight: 1
+      - path: zombie/handR
+        weight: 1
+      - path: zombie/handR/handR 2
+        weight: 1
+      - path: zombie/head
+        weight: 1
+      - path: zombie/head/eyeL
+        weight: 1
+      - path: zombie/head/eyeR
+        weight: 1
+      - path: zombie/head/head 2
+        weight: 1
+      - path: zombie1
+        weight: 1
+      - path: zombie1/body 1
+        weight: 1
+      - path: zombie1/handL 1
+        weight: 1
+      - path: zombie1/handR 1
+        weight: 1
+      - path: zombie1/head 1
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
