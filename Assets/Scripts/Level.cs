@@ -23,17 +23,6 @@ public class Level : MonoBehaviour {
 	public UI userInterface;
 
 	public static event System.Action OnWaveStart;
-
-	// Use this for initialization
-	void Start () {
-		FindObjectOfType<Player> ().OnDeath += OnPlayerDeath;
-		Enemy.OnDeath += OnEnemyKilled;
-		//startSpawning ();
-	}
-
-	void OnDisable(){
-		Enemy.OnDeath -= OnEnemyKilled;
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -81,7 +70,7 @@ public class Level : MonoBehaviour {
 
 
 	}
-	void OnEnemyKilled(Transform transform){
+	public void OnEnemyKilled(Transform transform){
 		enemiesAlive--;
 
 	}
@@ -91,7 +80,7 @@ public class Level : MonoBehaviour {
 		StartCoroutine (spawning);
 	}
 
-	void OnPlayerDeath(){
+	public void StopSpawning(){
 		StopCoroutine(spawning);
 	}
 

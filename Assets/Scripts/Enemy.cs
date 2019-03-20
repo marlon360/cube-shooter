@@ -20,11 +20,9 @@ public class Enemy : MonoBehaviour {
 	Player player;
 	public float damage = 10;
 
-	//public static event System.Action OnDeath;
-	public delegate void AnswerCallback (Transform transform);
+	public GameEvent DeathEvent;
 
-	// Event declaration
-	public static event AnswerCallback OnDeath;
+	public TransformVariable ItemSpawningPoint;
 
 	static bool isChasing;
 
@@ -74,9 +72,8 @@ public class Enemy : MonoBehaviour {
 
 		if (!dead) {
 			if (health <= 0) {
-				if (OnDeath != null) {
-					OnDeath (gameObject.transform);
-				}
+				DeathEvent.Raise();
+				ItemSpawningPoint.SetValue(transform);
 				Die ();
 				Destroy (Instantiate (deathEffect.gameObject, hitPoint, Quaternion.FromToRotation (Vector3.forward, hitDirection)) as GameObject, deathEffect.startLifetime);
 			} else {

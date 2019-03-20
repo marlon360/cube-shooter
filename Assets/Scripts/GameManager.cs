@@ -20,19 +20,13 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		score = 0;
 		player = FindObjectOfType<Player> ();
-		Enemy.OnDeath += OnEnemyKilled;
-		player.OnDeath += OnPlayerDeath;
 		weapon = player.GetComponentsInChildren<Weapon> ()[0];
-
+		Cursor.visible = false;
 	}
 
-	void OnDisable(){
-		Enemy.OnDeath -= OnEnemyKilled;
-		player.OnDeath -= OnPlayerDeath;
-	}
 
 	void Update(){
-		userinterface.setHealth (player.startingHealth, player.GetHealth());
+		userinterface.setHealth (player.health.InitialValue, player.GetHealth());
 		if (userinterface.inGame ()) {
 			if (Input.GetButtonDown ("Submit")) {
 				if (Time.timeScale == 0) {
@@ -74,14 +68,13 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void OnEnemyKilled(Transform transform) {
+	public void OnEnemyKilled(Transform transform) {
 		score += 5;
 		userinterface.setScore (score);
 		Debug.Log ("Enemy Killed");
 	}
 
-	void OnPlayerDeath() {
-		Enemy.OnDeath -= OnEnemyKilled;
+	public void OnPlayerDeath() {
 		userinterface.showGameover();
 		if (HSManager.isNewHighscore (score)) {
 			userinterface.showNewHighscore();

@@ -13,17 +13,16 @@ public class Player : MonoBehaviour {
 
 	int floorMask;                      // Layer Mask um Raycast nur auf Boden
 
-	public float startingHealth;		//Anfangs Lebenspunkte
-	public float health;				//aktuelle Lebenspunkte
+	public FloatVariable health;				//aktuelle Lebenspunkte
 
-	public event System.Action OnDeath;
+	public GameEvent DeathEvent;
 
 	//Wird einmal am Anfang ausgeführt
 	void Awake(){
 		playerRigidbody = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
 		floorMask = LayerMask.GetMask ("Floor");
-		health = startingHealth;
+		health.Reset();
 	}
 
 	void FixedUpdate(){
@@ -54,10 +53,6 @@ public class Player : MonoBehaviour {
 		//Wenn sich der Spieler bewegt -> Animator aktivieren
 		bool isMoving = h != 0 || v != 0;
 		animator.SetBool ("isWalking", isMoving);
-
-		if (isMoving) {
-			RestartAfterTime.resetTimer ();
-		}
 
 		// Rigidbody bewegen
 		playerRigidbody.MovePosition (transform.position + movement);
@@ -101,7 +96,6 @@ public class Player : MonoBehaviour {
 //			animator.SetBool ("isAiming", !currentState); //Animation fürs Zielen starten/beenden
 //		}
 		if (Input.GetAxisRaw ("Aim") == 1) {
-			RestartAfterTime.resetTimer ();
 			speed = 4f;
 		} else {
 			speed = 5f;
@@ -111,20 +105,18 @@ public class Player : MonoBehaviour {
 	}
 
 	public void TakeDamage(float damage) {
-		health -= damage;
-		if (health <= 0) {
+		health.Value -= damage;
+		if (health.Value <= 0) {
 			Die();
 		}
 	}
 
 	public float GetHealth(){
-		return health;
+		return health.Value;
 	}
 
 	void Die(){
-		if (OnDeath != null) {
-			OnDeath ();
-		}
+		DeathEvent.Raise();
 		gameObject.SetActive (false);
 	}
 

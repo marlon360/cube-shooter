@@ -18,12 +18,8 @@ public class ItemManager : MonoBehaviour {
 
 		itemActive = false;
 		currentItem = items [Random.Range (0, items.Length)];
-		Enemy.OnDeath += OnEnemyDeath;
 	}
 
-	void OnDisable(){
-		Enemy.OnDeath -= OnEnemyDeath;
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -31,7 +27,7 @@ public class ItemManager : MonoBehaviour {
 
 	}
 		
-	void OnEnemyDeath(Transform transform){
+	public void OnEnemyDeath(TransformVariable transform){
 		if (!itemActive) {
 			if (GameManager.score % 20 == 0 && GameManager.score != 0) {
 				if (transform != null) {
@@ -41,7 +37,7 @@ public class ItemManager : MonoBehaviour {
 						//neues Item festlegen
 						currentItem = items [Random.Range (0, items.Length)];
 						//Position für Spawn bestimmen
-						Vector3 newPos = new Vector3 (transform.position.x, currentItem.gameObject.transform.position.y, transform.position.z);
+						Vector3 newPos = new Vector3 (transform.Value.position.x, currentItem.gameObject.transform.position.y, transform.Value.position.z);
 						//Position setzten
 						currentItem.gameObject.transform.position = newPos;
 						//neues Item einblenden

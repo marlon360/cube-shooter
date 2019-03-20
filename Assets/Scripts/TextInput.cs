@@ -55,7 +55,6 @@ public class TextInput : MonoBehaviour {
 	void Update () {
 		if( Input.GetAxisRaw ("Vertical") != 0)
 		{
-			RestartAfterTime.resetTimer ();
 			if(m_isAxisInUse == false)
 			{
 				if (Input.GetAxisRaw ("Vertical") > 0) {
