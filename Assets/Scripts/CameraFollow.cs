@@ -31,7 +31,7 @@ public class CameraFollow : MonoBehaviour {
 		offset = playPos;
 	}
 
-	void LateUpdate() {
+	void FixedUpdate() {
 		if (target != null) {
 
 			newPosition = new Vector3(target.transform.position.x + offset.x,
