@@ -72,8 +72,8 @@ public class Enemy : MonoBehaviour {
 
 		if (!dead) {
 			if (health <= 0) {
-				DeathEvent.Raise();
 				ItemSpawningPoint.SetValue(transform);
+				DeathEvent.Raise();
 				Die ();
 				Destroy (Instantiate (deathEffect.gameObject, hitPoint, Quaternion.FromToRotation (Vector3.forward, hitDirection)) as GameObject, deathEffect.startLifetime);
 			} else {

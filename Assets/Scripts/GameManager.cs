@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void OnEnemyKilled(Transform transform) {
+	public void OnEnemyKilled() {
 		score += 5;
 		userinterface.setScore (score);
 		Debug.Log ("Enemy Killed");

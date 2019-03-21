@@ -22,7 +22,7 @@ public class Level : MonoBehaviour {
 
 	public UI userInterface;
 
-	public static event System.Action OnWaveStart;
+	public GameEvent WaveStartedEvent;
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,9 +42,7 @@ public class Level : MonoBehaviour {
 			yield return new WaitForSeconds (timeBetweenWaves+1f);
 			enemiesAlive = numberOfEnemies*2;
 
-			if (OnWaveStart != null) {
-				OnWaveStart ();
-			}
+			WaveStartedEvent.Raise();
 
 			while (currentNumberOfEnemies < numberOfEnemies) {
 				Transform spawnPunkt = spawnPoints [Random.Range (0, spawnPoints.Length)];
@@ -70,7 +68,7 @@ public class Level : MonoBehaviour {
 
 
 	}
-	public void OnEnemyKilled(Transform transform){
+	public void OnEnemyKilled(){
 		enemiesAlive--;
 
 	}

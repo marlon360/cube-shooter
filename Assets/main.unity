@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   health: {fileID: 11400000, guid: 80f6e9cee7bfe4937979c6aecdc51a98, type: 2}
-  DeathEvent: {fileID: 0}
+  DeathEvent: {fileID: 11400000, guid: 88023df409cb84a5b9f0e2e4b8d70ccc, type: 2}
 --- !u!4 &505192707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4839199211453384, guid: 7e1e106a65690418c810ed446a8e1d19,
@@ -3607,6 +3607,7 @@ GameObject:
   - component: {fileID: 655433331}
   - component: {fileID: 655433330}
   - component: {fileID: 655433332}
+  - component: {fileID: 655433333}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -3642,6 +3643,7 @@ MonoBehaviour:
   timeBetweenSpawns: 1
   spawnIntro: {fileID: 1685731894189168, guid: 6df682266f5074a00aa433e98054604d, type: 3}
   userInterface: {fileID: 940651581}
+  WaveStartedEvent: {fileID: 11400000, guid: a6e4247fb6b574451a9d16bc1612d6c7, type: 2}
 --- !u!4 &655433331
 Transform:
   m_ObjectHideFlags: 0
@@ -3676,6 +3678,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 655433330}
         m_MethodName: StopSpawning
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &655433333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655433329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20061d5394155454f93663a60c8b8ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b3a235af4b977474c833c249d040fc80, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 655433330}
+        m_MethodName: OnEnemyKilled
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5726,10 +5757,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 974034402}
         m_MethodName: OnEnemyKilled
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
