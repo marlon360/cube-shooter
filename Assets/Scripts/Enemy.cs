@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Update () {
-		
+
 		if (isChasing) {
 			checkForAttack ();
 			updateDestination ();
@@ -48,46 +48,47 @@ public class Enemy : MonoBehaviour {
 
 	}
 
-	void checkForAttack(){
+	void checkForAttack () {
 		if (Time.time > nextAttackTime) {
-			float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
-			if (sqrDstToTarget < 5) {
-				StartCoroutine (Attack ());
-				nextAttackTime = Time.time + 1f;
+			if (target) {
+				float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
+				if (sqrDstToTarget < 5) {
+					StartCoroutine (Attack ());
+					nextAttackTime = Time.time + 1f;
+				}
 			}
 		}
 	}
 
-	void updateDestination(){
+	void updateDestination () {
 		if (pathfinder.enabled) {
 			Vector3 targetPosition = new Vector3 (target.position.x, 0, target.position.z);
 			pathfinder.SetDestination (targetPosition);
 		}
 	}
 
-	public void TakeHit (float damage, Vector3 hitPoint, Vector3 hitDirection)
-	{
+	public void TakeHit (float damage, Vector3 hitPoint, Vector3 hitDirection) {
 
 		health -= damage;
 
 		if (!dead) {
 			if (health <= 0) {
-				ItemSpawningPoint.SetValue(transform);
-				DeathEvent.Raise();
+				ItemSpawningPoint.SetValue (transform);
+				DeathEvent.Raise ();
 				Die ();
 				Destroy (Instantiate (deathEffect.gameObject, hitPoint, Quaternion.FromToRotation (Vector3.forward, hitDirection)) as GameObject, deathEffect.startLifetime);
 			} else {
-				Destroy(Instantiate(hitEffect.gameObject, new Vector3(transform.position.x,hitPoint.y,transform.position.z), Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, hitEffect.startLifetime);
+				Destroy (Instantiate (hitEffect.gameObject, new Vector3 (transform.position.x, hitPoint.y, transform.position.z), Quaternion.FromToRotation (Vector3.forward, hitDirection)) as GameObject, hitEffect.startLifetime);
 			}
 		}
 
 	}
 
-	protected void Die() {
+	protected void Die () {
 		dead = true;
 		GameObject.Destroy (gameObject);
 	}
-	IEnumerator Attack() {
+	IEnumerator Attack () {
 		//pathfinder.enabled = false;
 
 		Vector3 originalPosition = transform.position;
@@ -103,20 +104,20 @@ public class Enemy : MonoBehaviour {
 
 			if (percent >= .5f && !hasAppliedDamage) {
 				hasAppliedDamage = true;
-				player.TakeDamage(damage);
+				player.TakeDamage (damage);
 			}
 
 			percent += Time.deltaTime * attackSpeed;
-			float interpolation = (-Mathf.Pow(percent,2) + percent) * 4;
-			transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
+			float interpolation = (-Mathf.Pow (percent, 2) + percent) * 4;
+			transform.position = Vector3.Lerp (originalPosition, attackPosition, interpolation);
 
 			yield return null;
 		}
-			
+
 		pathfinder.enabled = true;
 	}
 
-	public static void stopChasing(){
+	public static void stopChasing () {
 		isChasing = false;
 	}
 
