@@ -3630,6 +3630,11 @@ MonoBehaviour:
   spawner: {fileID: 704304170}
   waves:
   - {fileID: 11400000, guid: bf9b4408de7f746bb82a9ce175df1f15, type: 2}
+  - {fileID: 11400000, guid: 4c4fb6c67ecab4ee48819f93e44bbd8c, type: 2}
+  - {fileID: 11400000, guid: 4f7c7639acd774674bd677fc3f8f52f3, type: 2}
+  - {fileID: 11400000, guid: d9c4481ec87ec4d12a8adf71ee0d5b7d, type: 2}
+  - {fileID: 11400000, guid: e175c08aa7d594e0aad51dce30227517, type: 2}
+  - {fileID: 11400000, guid: 3fdc9bd89fac54b388192789af203e91, type: 2}
   timeBetweenWaves: 2
   userInterface: {fileID: 940651581}
   WaveStartedEvent: {fileID: 11400000, guid: a6e4247fb6b574451a9d16bc1612d6c7, type: 2}
