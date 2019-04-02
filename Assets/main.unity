@@ -3627,23 +3627,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c37af6958bf34e599ac60f1878da25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 343804950}
-  - {fileID: 611393497}
-  - {fileID: 224382706}
-  - {fileID: 748203434}
-  - {fileID: 1404858476}
-  - {fileID: 1660514246}
-  - {fileID: 61098076}
-  enemies:
-  - {fileID: 114740164608815010, guid: 66a49b123e54048c795866004fea7847, type: 3}
-  - {fileID: 114634976393906206, guid: 945292d685dce48c98a8b5e1a3fb26a3, type: 3}
-  - {fileID: 114862636148370614, guid: 1cfcc1485eb1c463096c8fa6f8645705, type: 3}
+  spawner: {fileID: 704304170}
+  waves:
+  - {fileID: 11400000, guid: bf9b4408de7f746bb82a9ce175df1f15, type: 2}
   timeBetweenWaves: 2
-  timeBetweenSpawns: 1
-  spawnIntro: {fileID: 1685731894189168, guid: 6df682266f5074a00aa433e98054604d, type: 3}
   userInterface: {fileID: 940651581}
   WaveStartedEvent: {fileID: 11400000, guid: a6e4247fb6b574451a9d16bc1612d6c7, type: 2}
+  WaveCompleteEvent: {fileID: 0}
 --- !u!4 &655433331
 Transform:
   m_ObjectHideFlags: 0
@@ -3953,6 +3943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 704304171}
+  - component: {fileID: 704304170}
   m_Layer: 0
   m_Name: SpawnpointsLevel1
   m_TagString: Untagged
@@ -3960,6 +3951,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &704304170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704304169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4aa7f20255048b4baf836e94b90e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPoints:
+  - {fileID: 343804950}
+  - {fileID: 611393497}
+  - {fileID: 224382706}
+  - {fileID: 748203434}
+  - {fileID: 1404858476}
+  - {fileID: 1660514246}
+  - {fileID: 61098076}
+  SpawnIntro: {fileID: 1685731894189168, guid: 6df682266f5074a00aa433e98054604d, type: 3}
+  SpawnIntroTime: 2
 --- !u!4 &704304171
 Transform:
   m_ObjectHideFlags: 0

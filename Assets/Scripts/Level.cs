@@ -5,15 +5,13 @@ using UnityEngine.UI;
 
 public class Level : MonoBehaviour {
 
+	public Spawner spawner;
 
-	public Transform[] spawnPoints;
-	public Enemy[] enemies;
+	public EnemyWave[] waves;
 
-	int currentWave = 1;
+	int currentWaveIndex = 0;
 
 	public float timeBetweenWaves;
-	public float timeBetweenSpawns = 1f;
-	public GameObject spawnIntro; //Was soll vor dem Spawn passieren?
 
 	private IEnumerator spawning;
 
@@ -23,66 +21,70 @@ public class Level : MonoBehaviour {
 	public UI userInterface;
 
 	public GameEvent WaveStartedEvent;
-	
+	public GameEvent WaveCompleteEvent;
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
-		
-		
-	IEnumerator startSpawn() {
+
+	public void StartGame () {
 
 		userInterface.showGame ();
+		StartCurrentWave();
+		
 
-		while(true){
+	}
 
-
-			int numberOfEnemies = currentWave*3;
-			userInterface.showMessageForSeconds ("WAVE "+currentWave+" STARTS",timeBetweenWaves);
-			yield return new WaitForSeconds (timeBetweenWaves+1f);
-			enemiesAlive = numberOfEnemies*2;
-
-			WaveStartedEvent.Raise();
-
-			while (currentNumberOfEnemies < numberOfEnemies) {
-				Transform spawnPunkt = spawnPoints [Random.Range (0, spawnPoints.Length)];
-				Transform spawnPunkt2 = spawnPoints [Random.Range (0, spawnPoints.Length)];
-
-				while (spawnPunkt.position == spawnPunkt2.position) {
-					spawnPunkt2 = spawnPoints [Random.Range (0, spawnPoints.Length)];
-				}
-
-				Destroy (Instantiate (spawnIntro, spawnPunkt.position, spawnPunkt.rotation) as GameObject, 3f);
-				Destroy (Instantiate (spawnIntro, spawnPunkt2.position, spawnPunkt2.rotation) as GameObject, 3f);
-				yield return new WaitForSeconds (1);
-
-				Instantiate (enemies [Random.Range (0, enemies.Length)], spawnPunkt.position, spawnIntro.transform.rotation);
-				Instantiate (enemies [Random.Range (0, enemies.Length)], spawnPunkt2.position, spawnIntro.transform.rotation);
-				currentNumberOfEnemies++;
-				yield return new WaitForSeconds (timeBetweenSpawns);
-			}
-			yield return new WaitWhile (() => enemiesAlive != 0);
-			currentNumberOfEnemies = 0;
-			currentWave++;
+	public void StartCurrentWave() {
+		EnemyWave currentWave;
+		if (currentWaveIndex >= waves.Length) {
+			currentWave = waves[waves.Length - 1];
+		} else {
+			currentWave = waves[currentWaveIndex];
 		}
-
-
+		StartCoroutine (StartWave (currentWave));
 	}
-	public void OnEnemyKilled(){
+
+	IEnumerator StartWave (EnemyWave enemyWave) {
+
+		enemiesAlive = enemyWave.NumberOfEnemies;
+
+		userInterface.showMessageForSeconds ("WAVE " + (currentWaveIndex + 1) + " STARTS", timeBetweenWaves);
+		yield return new WaitForSeconds (timeBetweenWaves + 1f);
+
+		WaveStartedEvent.Raise ();
+
+		int spawnedEnemies = 0;
+
+		while (spawnedEnemies < enemyWave.NumberOfEnemies) {
+
+			int parallelSpawns;
+			if (enemyWave.NumberOfEnemies - spawnedEnemies >= enemyWave.ParallelSpawns) {
+				parallelSpawns = enemyWave.ParallelSpawns;
+			} else {
+				parallelSpawns = enemyWave.NumberOfEnemies - spawnedEnemies;
+			}
+			spawning = spawner.SpawnEnemies (enemyWave.EnemyTypes, parallelSpawns);
+			StartCoroutine (spawning);
+			// add enemies to counter
+			spawnedEnemies += parallelSpawns;
+			// wait for the next spawn
+			yield return new WaitForSeconds (enemyWave.TimeBetweenSpawns);
+		}
+		currentWaveIndex++;
+	}
+
+	public void OnEnemyKilled () {
 		enemiesAlive--;
-
+		if(enemiesAlive <= 0) {
+			WaveCompleteEvent?.Raise();
+			StartCurrentWave();
+		}
 	}
 
-	public void startSpawning(){
-		spawning = startSpawn ();
-		StartCoroutine (spawning);
-	}
-
-	public void StopSpawning(){
-		StopCoroutine(spawning);
+	public void StopSpawning () {
+		StopCoroutine (spawning);
 	}
 
 }
-	
-
-

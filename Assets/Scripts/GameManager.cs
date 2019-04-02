@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
 		}
 		if (userinterface.menu.activeSelf) {
 			if (Input.GetButtonDown ("Submit")) {
-				level.startSpawning ();
+				level.StartGame ();
 				Camera.main.GetComponent<CameraFollow> ().switchToPlayerCam ();
 			}
 			if (Input.GetButtonDown ("BackButton")) {
