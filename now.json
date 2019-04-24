@@ -3,7 +3,7 @@
     "name": "cube-shooter",
     "builds": [
         {
-            "src": "./dist/web/**",
+            "src": "./dist/web/cubeshooter/**/*",
             "use": "@now/static"
         }
     ],
