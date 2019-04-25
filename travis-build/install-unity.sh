@@ -4,7 +4,8 @@
 # to get download URLs
 UNITY_DOWNLOAD_CACHE="$(pwd)/unity_download_cache"
 UNITY_OSX_PACKAGE_URL="https://download.unity3d.com/download_unity/292b93d75a2c/MacEditorInstaller/Unity-2019.1.0f2.pkg"
-UNITY_WINDOWS_TARGET_PACKAGE_URL="https://download.unity3d.com/download_unity/292b93d75a2c/MacEditorTargetInstaller/UnitySetup-Windows-Mono-Support-for-Editor-2019.1.0f2.pkg"
+#UNITY_WINDOWS_TARGET_PACKAGE_URL="https://download.unity3d.com/download_unity/292b93d75a2c/MacEditorTargetInstaller/UnitySetup-Windows-Mono-Support-for-Editor-2019.1.0f2.pkg"
+UNITY_WEBGL_TARGET_PACKAGE_URL="https://download.unity3d.com/download_unity/292b93d75a2c/MacEditorTargetInstaller/UnitySetup-WebGL-Support-for-Editor-2019.1.0f2.pkg"
 
 
 # Downloads a file if it does not exist
@@ -40,3 +41,4 @@ ls $UNITY_DOWNLOAD_CACHE
 echo "Installing Unity..."
 install $UNITY_OSX_PACKAGE_URL
 install $UNITY_WINDOWS_TARGET_PACKAGE_URL
+install $UNITY_WEBGL_TARGET_PACKAGE_URL
