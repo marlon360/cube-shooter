@@ -12,13 +12,9 @@ ls "$PROJECT_PATH"
 echo "Building project for WebGL..."
 /Applications/Unity/Unity.app/Contents/MacOS/Unity \
   -batchmode \
-  -nographics \
-  -silent-crashes \
-  -logFile \
   -projectPath "$PROJECT_PATH" \
   -executeMethod WebGLBuilder.build \
-  -quit \
-  | tee "$LOG_FILE"
+  -quit
   
 if [ $? = 0 ] ; then
   echo "Building WebGL completed successfully."
