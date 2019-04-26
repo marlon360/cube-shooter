@@ -1,4 +1,19 @@
 {
     "version": 2,
-    "name": "cube-shooter"
+    "name": "cube-shooter",
+    "alias": "cubeshooter.marlon-lueckert.de",
+    "routes": [
+        {
+            "src": "/Build/.+",
+            "headers": {
+                "Accept-Encoding": "br"
+            }
+        },
+        {
+            "src": "/Template/.+",
+            "headers": {
+                "Accept-Encoding": "br"
+            }
+        }
+    ]
 }
