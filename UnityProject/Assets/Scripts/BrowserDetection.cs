@@ -10,13 +10,13 @@ public class BrowserDetection : MonoBehaviour {
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             ControllerInputManager.UseWindows ();
         }
-        if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor) {
+        else if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor) {
             ControllerInputManager.UseMac ();
         }
-        if (Application.platform == RuntimePlatform.WebGLPlayer) {
+        else if (Application.platform == RuntimePlatform.WebGLPlayer) {
 
             if (isSafari ()) {
-                ControllerInputManager.UseMac ();
+                ControllerInputManager.UseWebMac ();
                 Debug.Log ("Safari detected");
             } else {
                 ControllerInputManager.UseWindows ();

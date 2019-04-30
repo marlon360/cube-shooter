@@ -28,19 +28,19 @@ public class MacInputMapping : IInputMapping
         return Input.GetAxisRaw("RT_Mac");
     }
 
-    public bool GetStartButton() {
+    public virtual bool GetStartButton() {
         return Input.GetButtonDown("Start_Mac");
     }
 
-    public bool GetBackButton() {
+    public virtual bool GetBackButton() {
         return Input.GetButtonDown("Back_Mac");
     }
 
-    public bool GetAButton() {
+    public virtual bool GetAButton() {
         return Input.GetButtonDown("A_Mac");
     }
     
-    public bool GetBButton() {
+    public virtual bool GetBButton() {
         return Input.GetButtonDown("B_Mac");
     }
 

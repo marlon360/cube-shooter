@@ -14,6 +14,10 @@ public static class ControllerInputManager {
         mapping = new MacInputMapping ();
     }
 
+    public static void UseWebMac () {
+        mapping = new WebMacInputMapping ();
+    }
+
     public static float GetLeftStickHorizontal () {
         return mapping.GetLeftStickHorizontal ();
     }
