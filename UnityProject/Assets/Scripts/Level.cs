@@ -49,7 +49,6 @@ public class Level : MonoBehaviour {
 	IEnumerator StartWave (EnemyWave enemyWave) {
 
 		enemiesAlive = enemyWave.NumberOfEnemies;
-
 		userInterface.showMessageForSeconds ("WAVE " + (currentWaveIndex + 1) + " STARTS", timeBetweenWaves);
 		yield return new WaitForSeconds (timeBetweenWaves + 1f);
 

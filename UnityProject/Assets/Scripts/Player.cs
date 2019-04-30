@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour {
 
 	public float speed = 5f; //Geschwindigkeit des Spielers
@@ -17,12 +18,19 @@ public class Player : MonoBehaviour {
 
 	public GameEvent DeathEvent;
 
+	public AudioClip damageSound;
+	private AudioSource audioSource;
+
 	//Wird einmal am Anfang ausgeführt
 	void Awake () {
 		playerRigidbody = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
 		floorMask = LayerMask.GetMask ("Floor");
 		health.Reset ();
+	}
+
+	void Start() {
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate () {
@@ -106,6 +114,7 @@ public class Player : MonoBehaviour {
 
 	public void TakeDamage (float damage) {
 		health.Value -= damage;
+		audioSource.PlayOneShot(damageSound, 0.4f);
 		if (health.Value <= 0) {
 			Die ();
 		}

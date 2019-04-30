@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(AudioSource))]
 public class Enemy : MonoBehaviour {
 
 	NavMeshAgent pathfinder;
@@ -14,7 +15,10 @@ public class Enemy : MonoBehaviour {
 	protected bool dead;
 
 	public ParticleSystem deathEffect;
+	public AudioClip deathSound;
 	public ParticleSystem hitEffect;
+	public AudioClip hitSound;
+	public AudioClip awakeSound;
 	float nextAttackTime;
 
 	Player player;
@@ -26,6 +30,8 @@ public class Enemy : MonoBehaviour {
 
 	static bool isChasing;
 
+	private AudioSource audioSource;
+
 	void Start () {
 		pathfinder = GetComponent<NavMeshAgent> ();
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -34,6 +40,10 @@ public class Enemy : MonoBehaviour {
 
 		health = startingHealth;
 		isChasing = true;
+
+		audioSource = GetComponent<AudioSource>();
+
+		audioSource.PlayOneShot(awakeSound, 0.3f);
 
 	}
 
@@ -76,12 +86,24 @@ public class Enemy : MonoBehaviour {
 				ItemSpawningPoint.SetValue (transform);
 				DeathEvent.Raise ();
 				Die ();
+				PlaySound(hitSound, 0.4f, hitPoint);
+				PlaySound(deathSound, 0.1f, hitPoint, UnityEngine.Random.Range(0.3f, 1f));
 				Destroy (Instantiate (deathEffect.gameObject, hitPoint, Quaternion.FromToRotation (Vector3.forward, hitDirection)) as GameObject, deathEffect.startLifetime);
 			} else {
+				PlaySound(hitSound, 0.4f, hitPoint);
 				Destroy (Instantiate (hitEffect.gameObject, new Vector3 (transform.position.x, hitPoint.y, transform.position.z), Quaternion.FromToRotation (Vector3.forward, hitDirection)) as GameObject, hitEffect.startLifetime);
 			}
 		}
 
+	}
+
+	private void PlaySound(AudioClip audio, float volume, Vector3 pos, float pitch = 1f) {
+		var go = Instantiate(new GameObject(), pos, Quaternion.identity);
+		AudioSource audioSource = go.AddComponent(typeof(AudioSource)) as AudioSource;
+		audioSource.spatialBlend = 1f;
+		audioSource.pitch = pitch;
+		audioSource.PlayOneShot(audio, volume);
+		Destroy(go, audio.length);
 	}
 
 	protected void Die () {

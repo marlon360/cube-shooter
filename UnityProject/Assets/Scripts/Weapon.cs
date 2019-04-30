@@ -17,8 +17,12 @@ public class Weapon : MonoBehaviour {
 
 	Animator playerAnimator;
 
+	public AudioClip shotSound;
+	private AudioSource audioSource;
+
 	void Start(){
 		playerAnimator = GameObject.FindGameObjectWithTag ("Player").GetComponent<Animator> ();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	void Update () {
@@ -26,6 +30,13 @@ public class Weapon : MonoBehaviour {
 
 		if (InputManager.GetShoot() == 1 && timer >= timeBetweenBullets && Time.timeScale != 0 && playerAnimator.GetBool("isAiming"))
 		{
+			if (currentBullet == 1) {
+				audioSource.pitch = 1.2f;
+			}
+			if (currentBullet == 0) {
+				audioSource.pitch = 2.2f;
+			}
+			audioSource.PlayOneShot(shotSound, 0.2f);
 			createBullet ();
 			if (triShoot) {
 				createBullet (20);
