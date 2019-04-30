@@ -53,17 +53,17 @@ public class TextInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if( Input.GetAxisRaw ("Vertical") != 0)
+		if( ControllerInputManager.GetLeftStickVertical() != 0)
 		{
 			if(m_isAxisInUse == false)
 			{
-				if (Input.GetAxisRaw ("Vertical") > 0) {
+				if (ControllerInputManager.GetLeftStickVertical() > 0) {
 					currentIndex = add (currentIndex, alphabet.Length);
 					switcher.text = ""+alphabet [currentIndex]+"";
 					next.text = ""+alphabet [add (currentIndex, alphabet.Length)]+"";
 					prev.text = ""+alphabet [sub (currentIndex, alphabet.Length)]+"";
 				}
-				if (Input.GetAxisRaw ("Vertical") < 0) {
+				if (ControllerInputManager.GetLeftStickVertical() < 0) {
 					currentIndex = sub(currentIndex,alphabet.Length);
 					switcher.text = ""+alphabet [currentIndex]+"";
 					next.text = ""+alphabet [add (currentIndex, alphabet.Length)]+"";
@@ -72,22 +72,22 @@ public class TextInput : MonoBehaviour {
 				m_isAxisInUse = true;
 			}
 		}
-		if( Input.GetAxisRaw ("Vertical") == 0)
+		if(ControllerInputManager.GetLeftStickVertical() == 0)
 		{
 			m_isAxisInUse = false;
 		}  
 
-		if (Input.GetButtonDown ("Select")) {
+		if (ControllerInputManager.GetAButton()) {
 			if (input.text.Length < 10) {
 				input.text += "" + alphabet [currentIndex] + "";
 			}
 		}
-		if (Input.GetButtonDown ("Delete")) {
+		if (ControllerInputManager.GetBButton()) {
 			if (input.text.Length > 0) {
 				input.text = input.text.Substring (0, input.text.Length - 1);
 			}
 		}
-		if (Input.GetButtonDown ("Submit")) {
+		if (ControllerInputManager.GetStartButton()) {
 			if (input.text.Length > 0) {
 				HighscoreEntry entry = new HighscoreEntry (input.text, GameManager.score);
 				HSManager.addHighscore (entry);

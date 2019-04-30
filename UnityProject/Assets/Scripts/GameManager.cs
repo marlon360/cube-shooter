@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	void Update(){
 		userinterface.setHealth (player.health.InitialValue, player.GetHealth());
 		if (userinterface.inGame ()) {
-			if (Input.GetButtonDown ("Submit")) {
+			if (ControllerInputManager.GetStartButton()) {
 				if (Time.timeScale == 0) {
 					Time.timeScale = 1;
 					userinterface.showGame ();
@@ -40,28 +40,28 @@ public class GameManager : MonoBehaviour {
 
 		}
 		if (userinterface.menu.activeSelf) {
-			if (Input.GetButtonDown ("Submit")) {
+			if (ControllerInputManager.GetStartButton()) {
 				level.StartGame ();
 				Camera.main.GetComponent<CameraFollow> ().switchToPlayerCam ();
 			}
-			if (Input.GetButtonDown ("BackButton")) {
+			if (ControllerInputManager.GetBackButton()) {
 				userinterface.showHighscores ();
 			}
 		}
 
 		if (userinterface.highscores.activeSelf) {
-			if (Input.GetButtonDown ("Submit")) {
+			if (ControllerInputManager.GetStartButton()) {
 				userinterface.restartScene ();
 			}
 		}
 
 		if (userinterface.gameover.activeSelf) {
-			if (Input.GetButtonDown ("Submit")) {
+			if (ControllerInputManager.GetStartButton()) {
 				userinterface.restartScene ();
 			}
 		}
 		if (userinterface.pause.activeSelf) {
-			if (Input.GetButtonDown ("BackButton")) {
+			if (ControllerInputManager.GetBackButton()) {
 				Time.timeScale = 1;
 				userinterface.restartScene ();
 			}

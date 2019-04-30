@@ -36,8 +36,8 @@ public class Player : MonoBehaviour {
 	void Move(){
 
 		//Eingaben aus der Tastatur
-		float h = Input.GetAxisRaw ("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
+		float h = ControllerInputManager.GetLeftStickHorizontal();
+		float v = ControllerInputManager.GetLeftStickVertical();
 
 		// Bewegungsvektor einstellen, keine Bewegung nach oben (y)
 		movement.Set (h, 0f, v);
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour {
 	void Turn(){
 
 
-		Vector3 NextDir = new Vector3(Input.GetAxis("TurnHorizontal"), 0, Input.GetAxisRaw("TurnVertical"));
+		Vector3 NextDir = new Vector3(ControllerInputManager.GetRightStickHorizontal(), 0, ControllerInputManager.GetRightStickVertical());
 		if (NextDir != Vector3.zero) {
 			playerRigidbody.MoveRotation(Quaternion.LookRotation (NextDir));
 		}
@@ -95,12 +95,12 @@ public class Player : MonoBehaviour {
 //			bool currentState = animator.GetBool ("isAiming"); //aktueller Zustand des Zielens
 //			animator.SetBool ("isAiming", !currentState); //Animation fürs Zielen starten/beenden
 //		}
-		if (Input.GetAxisRaw ("Aim") == 1) {
+		if (ControllerInputManager.GetLeftTrigger() == 1) {
 			speed = 4f;
 		} else {
 			speed = 5f;
 		}
-		animator.SetBool ("isAiming", Input.GetAxisRaw ("Aim") == 1);
+		animator.SetBool ("isAiming",ControllerInputManager.GetLeftTrigger() == 1);
 
 	}
 
