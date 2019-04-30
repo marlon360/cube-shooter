@@ -4,17 +4,14 @@ using UnityEngine;
 
 public static class ControllerInputManager {
 
-    #if (UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN)
-        public static IInputMapping mapping = new WindowsInputMapping();
-    #elif (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX)
-        public static IInputMapping mapping = new MacInputMapping();
-    #else
-        public static IInputMapping mapping = new WindowsInputMapping();
-    #endif
-    
+    public static IInputMapping mapping = new WindowsInputMapping ();
 
     public static void UseWindows () {
         mapping = new WindowsInputMapping ();
+    }
+
+    public static void UseMac () {
+        mapping = new MacInputMapping ();
     }
 
     public static float GetLeftStickHorizontal () {
