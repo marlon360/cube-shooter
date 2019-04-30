@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour {
 	void Update () {
 		timer += Time.deltaTime;
 
-		if (ControllerInputManager.GetRightTrigger() == 1 && timer >= timeBetweenBullets && Time.timeScale != 0 && playerAnimator.GetBool("isAiming"))
+		if (InputManager.GetShoot() == 1 && timer >= timeBetweenBullets && Time.timeScale != 0 && playerAnimator.GetBool("isAiming"))
 		{
 			createBullet ();
 			if (triShoot) {
@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour {
 			}
 			timer = 0;
 		}
-		if (ControllerInputManager.GetRightTrigger() != 1) {
+		if (InputManager.GetShoot() != 1) {
 			timer = timeBetweenBullets;
 		}
 		

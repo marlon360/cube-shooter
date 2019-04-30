@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MacInputMapping : IInputMapping
+public class MacInputMapping : IControllerInputMapping
 {
     public float GetLeftStickHorizontal() {
         return Input.GetAxisRaw("LS_X_Mac");

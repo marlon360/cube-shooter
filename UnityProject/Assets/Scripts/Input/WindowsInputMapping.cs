@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindowsInputMapping : IInputMapping
+public class WindowsInputMapping : IControllerInputMapping
 {
     public float GetLeftStickHorizontal() {
         return Input.GetAxisRaw("LS_X_Win");

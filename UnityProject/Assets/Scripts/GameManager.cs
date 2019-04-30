@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
@@ -17,18 +17,25 @@ public class GameManager : MonoBehaviour {
 
 	GameObject[] items;
 
-	void Start() {
+	void Start () {
 		score = 0;
 		player = FindObjectOfType<Player> ();
-		weapon = player.GetComponentsInChildren<Weapon> ()[0];
-		Cursor.visible = false;
+		weapon = player.GetComponentsInChildren<Weapon> () [0];
+		
+
 	}
 
+	void Update () {
 
-	void Update(){
-		userinterface.setHealth (player.health.InitialValue, player.GetHealth());
+		if (!(InputManager.inputType == InputType.KeyboardMouse)) {
+			Cursor.visible = false;
+		} else {
+			Cursor.visible = true;
+		}
+
+		userinterface.setHealth (player.health.InitialValue, player.GetHealth ());
 		if (userinterface.inGame ()) {
-			if (ControllerInputManager.GetStartButton()) {
+			if (InputManager.GetStart ()) {
 				if (Time.timeScale == 0) {
 					Time.timeScale = 1;
 					userinterface.showGame ();
@@ -40,44 +47,44 @@ public class GameManager : MonoBehaviour {
 
 		}
 		if (userinterface.menu.activeSelf) {
-			if (ControllerInputManager.GetStartButton()) {
+			if (InputManager.GetStart ()) {
 				level.StartGame ();
 				Camera.main.GetComponent<CameraFollow> ().switchToPlayerCam ();
 			}
-			if (ControllerInputManager.GetBackButton()) {
+			if (InputManager.GetBack ()) {
 				userinterface.showHighscores ();
 			}
 		}
 
 		if (userinterface.highscores.activeSelf) {
-			if (ControllerInputManager.GetStartButton()) {
+			if (InputManager.GetStart ()) {
 				userinterface.restartScene ();
 			}
 		}
 
 		if (userinterface.gameover.activeSelf) {
-			if (ControllerInputManager.GetStartButton()) {
+			if (InputManager.GetStart ()) {
 				userinterface.restartScene ();
 			}
 		}
 		if (userinterface.pause.activeSelf) {
-			if (ControllerInputManager.GetBackButton()) {
+			if (InputManager.GetBack ()) {
 				Time.timeScale = 1;
 				userinterface.restartScene ();
 			}
 		}
 	}
 
-	public void OnEnemyKilled() {
+	public void OnEnemyKilled () {
 		score += 5;
 		userinterface.setScore (score);
 		Debug.Log ("Enemy Killed");
 	}
 
-	public void OnPlayerDeath() {
-		userinterface.showGameover();
+	public void OnPlayerDeath () {
+		userinterface.showGameover ();
 		if (HSManager.isNewHighscore (score)) {
-			userinterface.showNewHighscore();
+			userinterface.showNewHighscore ();
 		}
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		foreach (GameObject enemy in enemies) {

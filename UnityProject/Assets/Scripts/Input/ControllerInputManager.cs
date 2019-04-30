@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class ControllerInputManager {
 
-    public static IInputMapping mapping = new WindowsInputMapping ();
+    public static IControllerInputMapping mapping = new WindowsInputMapping ();
 
     public static void UseWindows () {
         mapping = new WindowsInputMapping ();

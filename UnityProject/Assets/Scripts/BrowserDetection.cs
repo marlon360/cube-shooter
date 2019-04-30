@@ -25,4 +25,12 @@ public class BrowserDetection : MonoBehaviour {
         }
     }
 
+    void Update() {
+        if (Input.GetJoystickNames().Length > 0) {
+            InputManager.UseController();
+        } else {
+            InputManager.UseKeyboard();
+        }
+    }
+
 }

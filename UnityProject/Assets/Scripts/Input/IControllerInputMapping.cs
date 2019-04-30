@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-public interface IInputMapping {
+public interface IControllerInputMapping {
 
     float GetLeftStickHorizontal ();
     float GetLeftStickVertical ();
