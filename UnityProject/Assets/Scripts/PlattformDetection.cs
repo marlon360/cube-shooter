@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class BrowserDetection : MonoBehaviour {
+public class PlattformDetection : MonoBehaviour {
 
     [DllImport ("__Internal")]
     private static extern bool isSafari ();
