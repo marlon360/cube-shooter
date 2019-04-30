@@ -94,10 +94,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void Aim () {
-		//		if (Input.GetAxisRaw("Fire2")) { //Rechte Maustaste gedrückt
-		//			bool currentState = animator.GetBool ("isAiming"); //aktueller Zustand des Zielens
-		//			animator.SetBool ("isAiming", !currentState); //Animation fürs Zielen starten/beenden
-		//		}
+
 		if (InputManager.GetAim () == 1) {
 			speed = 4f;
 		} else {
