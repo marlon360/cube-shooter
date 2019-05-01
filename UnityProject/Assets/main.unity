@@ -20,13 +20,13 @@ RenderSettings:
   m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
+  m_AmbientSkyColor: {r: 0.41960785, g: 0.4791171, b: 0.6313726, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 5070293c4d9f54eabb8dd7ba65d1f1ff, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 9f417efb297734b96bd3e257f5e7cde3, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4447568, g: 0.49429923, b: 0.5735064, a: 1}
+  m_IndirectSpecularColor: {r: 0.27783197, g: 0.37060523, b: 0.47900325, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50,7 +50,7 @@ LightmapSettings:
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -96,7 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 112000001, guid: 56d7d3939ebe641aaa850aa0924bbe2b,
+  m_LightingDataAsset: {fileID: 112000000, guid: 56d7d3939ebe641aaa850aa0924bbe2b,
     type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -10242,13 +10242,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793860016}
-  m_LocalRotation: {x: -0.10404498, y: -0.86388373, z: 0.4506683, w: -0.19944327}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0.1109887, y: -0.8776499, z: 0.39618227, w: -0.24586971}
+  m_LocalPosition: {x: -13.37, y: 3, z: 6.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -304.9, y: -566, z: 0}
+  m_LocalEulerAnglesHint: {x: -311.41, y: -571.3, z: 0}
 --- !u!4 &1794924686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4839199211453384, guid: 7e1e106a65690418c810ed446a8e1d19,
