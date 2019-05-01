@@ -1,25 +1,109 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | CubeShooter</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-    <script src="TemplateData/UnityProgress.js"></script>
-    <script src="Build/UnityLoader.js"></script>
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/cubeshooter.json", {onProgress: UnityProgress});
-    </script>
-  </head>
-  <body>
-    <div class="webgl-content">
-      <div id="unityContainer" style="width: 960px; height: 600px"></div>
-      <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">CubeShooter</div>
-      </div>
-    </div>
-  </body>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>CubeShooter</title>
+	<script src="Build/UnityLoader.js"></script>
+	<script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/cubeshooter.json");
+		
+		window.onresize = function(){
+			var canvas = gameInstance.Module.canvas;
+			var container = gameInstance.container;
+
+			var w = window.innerWidth - 100;
+			var h =  window.innerHeight - 200;
+			var r = 600/960;
+			if(w * r >  window.innerHeight - 200){
+				w = Math.min(w, Math.ceil(h / r));
+			}
+			h = Math.floor(w * r);
+
+			container.style.width = canvas.style.width = w + "px";
+			container.style.height = canvas.style.height = h + "px";
+			container.style.top = (Math.floor((window.innerHeight - h) /2)) + "px";
+			var left = Math.floor((window.innerWidth - w)/2);
+			container.style.left = left  + "px";
+
+			var header = document.getElementsByTagName("header")[0];
+			var footer = document.getElementsByTagName("footer")[0];
+
+			header.style.left = left + "px";
+			header.style.right = left + "px";
+			footer.style.left = left + "px";
+			footer.style.right = left + "px";
+		}
+	</script>
+	<style>
+		html,body{
+			background: #000;
+			background: #00172d;;
+			width: 100%;
+			height: 100%;
+			overflow:visible;
+			padding:0;
+			margin:0;
+            font-family: 'Myriad Pro', sans-serif;
+		}
+        header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+		h1, h2 {
+			color: white;
+		}
+		h1 {
+			margin-bottom: 0;
+		}
+		h2 {
+			font-weight: 300;
+			font-size: 14px;
+			margin: 0;
+		}
+		div#gameContainer{
+			background: transparent!important;
+			position: absolute;
+            border: 4px solid white !important;
+		}
+		div#gameContainer canvas{
+			position: absolute;
+			image-rendering: optimizeSpeed;
+            image-rendering: -webkit-crisp-edges;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -o-crisp-edges;
+			image-rendering: crisp-edges;
+			image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;
+		}
+        footer {
+			position: fixed;
+			bottom: 0;
+			height: 50px;
+			left: 0;
+			right: 0;
+			color: white;
+			text-align: right;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+		}
+		footer a:hover {
+			cursor: pointer;
+			color: #c9c9c9;
+		}
+	</style>
+</head>
+<body onload="window.onresize();">
+    <header>
+		<h1>Cube Shooter</h1>
+		<h2>a game by Marlon Lückert</h2>
+	</header>
+    <div id="gameContainer"></div>
+    <footer><a onclick="gameInstance.SetFullscreen(1)">Go Fullscreen</a></footer>
+</body>
 </html>
