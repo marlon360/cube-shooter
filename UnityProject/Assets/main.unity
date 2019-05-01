@@ -2852,6 +2852,7 @@ GameObject:
   - component: {fileID: 528077790}
   - component: {fileID: 528077789}
   - component: {fileID: 528077788}
+  - component: {fileID: 528077787}
   m_Layer: 5
   m_Name: menuCanvas
   m_TagString: Untagged
@@ -2859,6 +2860,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!222 &528077787
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528077786}
+  m_CullTransparentMesh: 0
 --- !u!114 &528077788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5584,6 +5593,28 @@ MonoBehaviour:
   msgPanel2: {fileID: 1727281230}
   msgText2: {fileID: 1349133605}
   process2: {fileID: 213508136}
+  menuImage: {fileID: 928468978}
+  inputImage: {fileID: 1008843484}
+  pauseImage: {fileID: 552141659}
+  newHighscoreImage: {fileID: 1562129320}
+  highscoreImage: {fileID: 244116667}
+  gameoverImage: {fileID: 244116667}
+  menuSpriteGamepad: {fileID: 21300000, guid: 50f240863fcc1406fb119c6cfb9b9d5c, type: 3}
+  inputSpriteGamepad: {fileID: 21300000, guid: 60be970c98732471bb72dd1c997d0d26, type: 3}
+  pauseSpriteGamepad: {fileID: 21300000, guid: ae1024a49038b493b95f4f25813dd59c, type: 3}
+  newHighScoreSpriteGamepad: {fileID: 21300000, guid: 3f1185db9f15a4d6c9126245d32c671d,
+    type: 3}
+  highScoreSpriteGamepad: {fileID: 21300000, guid: b370d958d313c45feb42d32413976dcf,
+    type: 3}
+  menuSpriteKeyboard: {fileID: 21300000, guid: fda334c2b73b64afbbf9df8c764057b6, type: 3}
+  inputSpriteKeyboard: {fileID: 21300000, guid: b0eb12f16f6c14deda9238e4078441de,
+    type: 3}
+  pauseSpriteKeyboard: {fileID: 21300000, guid: c3bb14296aff24de289254b72106e98a,
+    type: 3}
+  newHighScoreSpriteKeyboard: {fileID: 21300000, guid: 79b72bc71bf21469fb32174cd4c1cf2c,
+    type: 3}
+  highScoreSpriteKeyboard: {fileID: 21300000, guid: d87890fd63e654e68bb8e7262b35fd70,
+    type: 3}
 --- !u!4 &940651582
 Transform:
   m_ObjectHideFlags: 0
@@ -7388,7 +7419,7 @@ GameObject:
   - component: {fileID: 1317402276}
   - component: {fileID: 1317402275}
   m_Layer: 0
-  m_Name: BrowserDetection
+  m_Name: PlattformDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7406,6 +7437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563079cb3f0e741d0874c7cd644df6ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 940651581}
 --- !u!4 &1317402276
 Transform:
   m_ObjectHideFlags: 0

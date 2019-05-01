@@ -37,6 +37,27 @@ public class UI : MonoBehaviour {
 	private float startTime2 = 2;
 	private float curTime2 = 2;
 
+	[Header("Images")]
+	public Image menuImage;
+	public Image inputImage;
+	public Image pauseImage;
+	public Image newHighscoreImage;
+	public Image highscoreImage;
+	public Image gameoverImage;
+
+	[Header("Sprites/GamePad")]
+	public Sprite menuSpriteGamepad;
+	public Sprite inputSpriteGamepad;
+	public Sprite pauseSpriteGamepad;
+	public Sprite newHighScoreSpriteGamepad;
+	public Sprite highScoreSpriteGamepad;
+	[Header("Sprites/Keyboard")]
+	public Sprite menuSpriteKeyboard;
+	public Sprite inputSpriteKeyboard;
+	public Sprite pauseSpriteKeyboard;
+	public Sprite newHighScoreSpriteKeyboard;
+	public Sprite highScoreSpriteKeyboard;
+
 
 	public void setScore(int scoreValue){
 		if (score != null) {
@@ -155,6 +176,24 @@ public class UI : MonoBehaviour {
 
 	public bool inGame(){
 		return game.activeSelf || pause.activeSelf;
+	}
+
+	public void SetGamepadUI() {
+		menuImage.sprite = menuSpriteGamepad;
+		pauseImage.sprite = pauseSpriteGamepad;
+		highscoreImage.sprite = highScoreSpriteGamepad;
+		newHighscoreImage.sprite = newHighScoreSpriteGamepad;
+		gameoverImage.sprite = highScoreSpriteGamepad;
+		inputImage.sprite = inputSpriteGamepad;
+	}
+
+	public void SetKeyboardUI() {
+		menuImage.sprite = menuSpriteKeyboard;
+		pauseImage.sprite = pauseSpriteKeyboard;
+		highscoreImage.sprite = highScoreSpriteKeyboard;
+		newHighscoreImage.sprite = newHighScoreSpriteKeyboard;
+		gameoverImage.sprite = highScoreSpriteKeyboard;
+		inputImage.sprite = inputSpriteKeyboard;
 	}
 		
 

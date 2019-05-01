@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class PlattformDetection : MonoBehaviour {
 
+    public UI ui;
+
     [DllImport ("__Internal")]
     private static extern bool isSafari ();
+
+    private bool isController;
 
     void Start () {
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
@@ -23,13 +27,28 @@ public class PlattformDetection : MonoBehaviour {
                 Debug.Log ("No Safari detected");
             }
         }
+        SetPlattform();
+    }
+
+    public void SetPlattform() {
+        if (Input.GetJoystickNames().Length > 0) {
+            InputManager.UseController();
+            ui.SetGamepadUI();
+            isController = true;
+        } else {
+            InputManager.UseKeyboard();
+            ui.SetKeyboardUI();
+            isController = false;
+        }
     }
 
     void Update() {
-        if (Input.GetJoystickNames().Length > 0) {
-            InputManager.UseController();
-        } else {
-            InputManager.UseKeyboard();
+        if (Input.GetJoystickNames().Length > 0 && !isController) {
+            SetPlattform();
+        }
+
+        if (Input.GetJoystickNames().Length == 0 && isController) {
+            SetPlattform();
         }
     }
 
