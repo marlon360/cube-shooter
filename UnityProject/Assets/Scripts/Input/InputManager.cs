@@ -80,4 +80,34 @@ public static class InputManager {
         }
     }
 
+    public static bool GetSubmitName () {
+        if (inputType == InputType.Controller) {
+            return ControllerInputManager.GetStartButton ();
+        } else if (inputType == InputType.KeyboardMouse) {
+            return Input.GetKeyDown(KeyCode.Return);
+        } else {
+            return false;
+        }
+    }
+
+    public static bool GetPause () {
+        if (inputType == InputType.Controller) {
+            return ControllerInputManager.GetStartButton ();
+        } else if (inputType == InputType.KeyboardMouse) {
+            return Input.GetKeyDown(KeyCode.Escape);
+        } else {
+            return false;
+        }
+    }
+
+    public static bool GetExit () {
+        if (inputType == InputType.Controller) {
+            return ControllerInputManager.GetBackButton ();
+        } else if (inputType == InputType.KeyboardMouse) {
+            return Input.GetKeyDown(KeyCode.Q);
+        } else {
+            return false;
+        }
+    }
+
 }

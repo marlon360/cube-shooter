@@ -94,7 +94,7 @@ public class TextInput : MonoBehaviour {
 				inputField.text = inputField.text.Substring (0, inputField.text.Length - 1);
 			}
 		}
-		if (ControllerInputManager.GetStartButton()) {
+		if (InputManager.GetSubmitName()) {
 			if (inputField.text.Length > 0) {
 				HighscoreEntry entry = new HighscoreEntry (inputField.text, GameManager.score);
 				HSManager.addHighscore (entry);

@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour {
 		player = FindObjectOfType<Player> ();
 		weapon = player.GetComponentsInChildren<Weapon> () [0];
 		
-
 	}
 
 	void Update () {
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour {
 
 		userinterface.setHealth (player.health.InitialValue, player.GetHealth ());
 		if (userinterface.inGame ()) {
-			if (InputManager.GetStart ()) {
+			if (InputManager.GetPause ()) {
 				if (Time.timeScale == 0) {
 					Time.timeScale = 1;
 					userinterface.showGame ();
@@ -68,7 +67,7 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 		if (userinterface.pause.activeSelf) {
-			if (InputManager.GetBack ()) {
+			if (InputManager.GetExit ()) {
 				Time.timeScale = 1;
 				userinterface.restartScene ();
 			}
