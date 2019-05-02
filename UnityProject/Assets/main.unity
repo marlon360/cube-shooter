@@ -5597,7 +5597,7 @@ MonoBehaviour:
   inputImage: {fileID: 1008843484}
   pauseImage: {fileID: 552141659}
   newHighscoreImage: {fileID: 1562129320}
-  highscoreImage: {fileID: 244116667}
+  highscoreImage: {fileID: 757039236}
   gameoverImage: {fileID: 244116667}
   menuSpriteGamepad: {fileID: 21300000, guid: 50f240863fcc1406fb119c6cfb9b9d5c, type: 3}
   inputSpriteGamepad: {fileID: 21300000, guid: 60be970c98732471bb72dd1c997d0d26, type: 3}
@@ -9690,7 +9690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1685178500
 RectTransform:
   m_ObjectHideFlags: 0
