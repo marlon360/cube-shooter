@@ -73,7 +73,8 @@ public class Player : MonoBehaviour {
 
 			Vector3 NextDir = new Vector3 (ControllerInputManager.GetRightStickHorizontal (), 0, ControllerInputManager.GetRightStickVertical ());
 			if (NextDir != Vector3.zero) {
-				playerRigidbody.MoveRotation (Quaternion.LookRotation (NextDir));
+				Quaternion newRotation = Quaternion.LookRotation (NextDir);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, 1400f * Time.deltaTime);
 			}
 		}
 
@@ -92,10 +93,10 @@ public class Player : MonoBehaviour {
 				playerToMouse.y = 0f;
 
 				// Rotation erstellen
-				Quaternion newRotatation = Quaternion.LookRotation (playerToMouse);
+				Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
 
 				// neue Roataion übergeben
-				playerRigidbody.MoveRotation (newRotatation);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, 1200f * Time.deltaTime);
 
 			}
 		}
