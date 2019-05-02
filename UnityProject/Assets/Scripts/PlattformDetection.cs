@@ -13,11 +13,9 @@ public class PlattformDetection : MonoBehaviour {
     void Start () {
         if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) {
             ControllerInputManager.UseWindows ();
-        }
-        else if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor) {
+        } else if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor) {
             ControllerInputManager.UseMac ();
-        }
-        else if (Application.platform == RuntimePlatform.WebGLPlayer) {
+        } else if (Application.platform == RuntimePlatform.WebGLPlayer) {
 
             if (isSafari ()) {
                 ControllerInputManager.UseWebMac ();
@@ -27,29 +25,51 @@ public class PlattformDetection : MonoBehaviour {
                 Debug.Log ("No Safari detected");
             }
         }
-        SetPlattform();
-    }
-
-    public void SetPlattform() {
-        if (Input.GetJoystickNames().Length > 0) {
-            InputManager.UseController();
-            ui.SetGamepadUI();
+        if (isOneGamepadConnected()) {
+            InputManager.UseController ();
+            ui.SetGamepadUI ();
             isController = true;
         } else {
-            InputManager.UseKeyboard();
-            ui.SetKeyboardUI();
+            InputManager.UseKeyboard ();
+            ui.SetKeyboardUI ();
+            isController = false;
+        }
+        
+        InvokeRepeating("CheckPlattform", 0.2f, 3f);
+    }
+
+    public void CheckPlattform () {
+        if (isOneGamepadConnected() && !isController) {
+            InputManager.UseController ();
+            ui.SetGamepadUI ();
+            isController = true;
+        }
+        if (!isOneGamepadConnected() && isController) {
+            InputManager.UseKeyboard ();
+            ui.SetKeyboardUI ();
             isController = false;
         }
     }
 
-    void Update() {
-        if (Input.GetJoystickNames().Length > 0 && !isController) {
-            SetPlattform();
-        }
+    bool isOneGamepadConnected () {
 
-        if (Input.GetJoystickNames().Length == 0 && isController) {
-            SetPlattform();
+        bool connected = false;
+
+        //Get Joystick Names
+        string[] temp = Input.GetJoystickNames ();
+
+        //Check whether array contains anything
+        if (temp.Length > 0) {
+            //Iterate over every element
+            for (int i = 0; i < temp.Length; ++i) {
+                //Check if the string is empty or not
+                if (!string.IsNullOrEmpty (temp[i])) {
+                    //Not empty, controller temp[i] is connected
+                    connected = true;
+                }
+            }
         }
+        return connected;
     }
 
 }
