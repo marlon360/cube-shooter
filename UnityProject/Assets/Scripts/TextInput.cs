@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class TextInput : MonoBehaviour {
 
 	public Text switcher;
-	public Text input;
 	public Text next;
 	public Text prev;
 
@@ -21,14 +21,17 @@ public class TextInput : MonoBehaviour {
 
 	private bool m_isAxisInUse = false;
 
+	private InputField inputField;
+
 	// Use this for initialization
 	void Start () {
+		inputField = GetComponentInChildren<InputField>();
 
 		switcher.text = ""+alphabet [currentIndex]+"";
-		input.text = "";
+		inputField.text = "";
 		next.text = ""+alphabet [add (currentIndex, alphabet.Length)]+"";
 		prev.text = ""+alphabet [sub (currentIndex, alphabet.Length)]+"";
-
+		
 	}
 
 	void OnEnable(){
@@ -53,6 +56,10 @@ public class TextInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(!inputField.isFocused) {
+			inputField.ActivateInputField();
+
+		}
 		if( ControllerInputManager.GetLeftStickVertical() != 0)
 		{
 			if(m_isAxisInUse == false)
@@ -78,18 +85,18 @@ public class TextInput : MonoBehaviour {
 		}  
 
 		if (ControllerInputManager.GetAButton()) {
-			if (input.text.Length < 10) {
-				input.text += "" + alphabet [currentIndex] + "";
+			if (inputField.text.Length < 10) {
+				inputField.text += "" + alphabet [currentIndex] + "";
 			}
 		}
 		if (ControllerInputManager.GetBButton()) {
-			if (input.text.Length > 0) {
-				input.text = input.text.Substring (0, input.text.Length - 1);
+			if (inputField.text.Length > 0) {
+				inputField.text = inputField.text.Substring (0, inputField.text.Length - 1);
 			}
 		}
 		if (ControllerInputManager.GetStartButton()) {
-			if (input.text.Length > 0) {
-				HighscoreEntry entry = new HighscoreEntry (input.text, GameManager.score);
+			if (inputField.text.Length > 0) {
+				HighscoreEntry entry = new HighscoreEntry (inputField.text, GameManager.score);
 				HSManager.addHighscore (entry);
 				userInterface.showHighscores ();
 			}
