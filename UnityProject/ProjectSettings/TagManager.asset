@@ -5,6 +5,30 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - target
+  - ground
+  - wall
+  - block
+  - goal
+  - agent
+  - banana
+  - stone
+  - pyramid
+  - walkableSurface
+  - blueAgent
+  - blueGoal
+  - redGoal
+  - ball
+  - orangeGoal
+  - orangeBlock
+  - redBlock
+  - iWall
+  - switchOff
+  - badBanana
+  - pit
+  - Wall
+  - Item
+  - Zombie
   layers:
   - Default
   - TransparentFX

@@ -7,19 +7,25 @@ public class Player : MonoBehaviour {
 
 	public float speed = 5f; //Geschwindigkeit des Spielers
 
-	Rigidbody playerRigidbody; // Rigidbody des Spielers
-	Animator animator; // Animator des Spielers
+	[HideInInspector]
+	public Rigidbody playerRigidbody; // Rigidbody des Spielers
+	[HideInInspector]
+	public Animator animator; // Animator des Spielers
 
-	Vector3 movement; // Bewegungsrichtung Vektor
+	[HideInInspector]
+	public Vector3 movement; // Bewegungsrichtung Vektor
 
 	int floorMask; // Layer Mask um Raycast nur auf Boden
 
 	public FloatVariable health; //aktuelle Lebenspunkte
 
 	public GameEvent DeathEvent;
+	public GameEvent PlayerHitEvent;
 
 	public AudioClip damageSound;
 	private AudioSource audioSource;
+
+	public bool lockInput = false;
 
 	//Wird einmal am Anfang ausgeführt
 	void Awake () {
@@ -34,11 +40,15 @@ public class Player : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		Move ();
-		Turn ();
+		if (!lockInput) {
+			Move ();
+			Turn ();
+		}
 	}
 	void Update () {
-		Aim ();
+		if (!lockInput) {
+			Aim ();
+		}
 	}
 
 	void Move () {
@@ -115,6 +125,7 @@ public class Player : MonoBehaviour {
 
 	public void TakeDamage (float damage) {
 		health.Value -= damage;
+		PlayerHitEvent.Raise();
 		audioSource.PlayOneShot(damageSound, 0.4f);
 		if (health.Value <= 0) {
 			Die ();
@@ -127,7 +138,11 @@ public class Player : MonoBehaviour {
 
 	void Die () {
 		DeathEvent.Raise ();
-		gameObject.SetActive (false);
+		//gameObject.SetActive (false);
+	}
+
+	public void Reset() {
+		health.Value = 30;
 	}
 
 }

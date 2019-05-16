@@ -28,6 +28,13 @@ public class Level : MonoBehaviour {
 
 	}
 
+	public void Reset() {
+		StopSpawning();
+		currentWaveIndex = 0;
+		currentNumberOfEnemies = 0;
+		enemiesAlive = 0;
+	}
+
 	public void StartGame () {
 
 		userInterface.showGame ();
@@ -83,7 +90,10 @@ public class Level : MonoBehaviour {
 	}
 
 	public void StopSpawning () {
-		StopCoroutine (spawning);
+		if (spawning != null) {
+			StopCoroutine (spawning);
+		}
+		
 	}
 
 }

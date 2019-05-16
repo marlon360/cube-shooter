@@ -26,6 +26,12 @@ public class ItemManager : MonoBehaviour {
 
 
 	}
+
+	public void Reset() {
+		if (currentItem != null) {
+			currentItem.gameObject.SetActive(false);
+		}
+	}
 		
 	public void OnEnemyDeath(TransformVariable transform){
 		if (!itemActive) {

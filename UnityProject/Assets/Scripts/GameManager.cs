@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
 		score = 0;
 		player = FindObjectOfType<Player> ();
 		weapon = player.GetComponentsInChildren<Weapon> () [0];
-		
+
 	}
 
 	void Update () {
@@ -47,8 +47,7 @@ public class GameManager : MonoBehaviour {
 		}
 		if (userinterface.menu.activeSelf) {
 			if (InputManager.GetStart ()) {
-				level.StartGame ();
-				Camera.main.GetComponent<CameraFollow> ().switchToPlayerCam ();
+				StartGame ();
 			}
 			if (InputManager.GetBack ()) {
 				userinterface.showHighscores ();
@@ -74,10 +73,14 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public void StartGame () {
+		level.StartGame ();
+		Camera.main.GetComponent<CameraFollow> ().switchToPlayerCam ();
+	}
+
 	public void OnEnemyKilled () {
 		score += 5;
 		userinterface.setScore (score);
-		Debug.Log ("Enemy Killed");
 	}
 
 	public void OnPlayerDeath () {

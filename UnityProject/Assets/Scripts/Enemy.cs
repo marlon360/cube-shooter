@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour {
 	public float damage = 10;
 
 	public GameEvent DeathEvent;
+	public GameEvent HitEvent;
 
 	public TransformVariable ItemSpawningPoint;
 
@@ -78,7 +79,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void TakeHit (float damage, Vector3 hitPoint, Vector3 hitDirection) {
-
+		HitEvent.Raise();
 		health -= damage;
 
 		if (!dead) {

@@ -910,6 +910,7 @@ MonoBehaviour:
   awakeSound: {fileID: 8300000, guid: abf17d6f03abc4635b1b30df103843ec, type: 3}
   damage: 10
   DeathEvent: {fileID: 11400000, guid: b3a235af4b977474c833c249d040fc80, type: 2}
+  HitEvent: {fileID: 11400000, guid: f8ce7afaec83547cab970bc2e4b529d6, type: 2}
   ItemSpawningPoint: {fileID: 11400000, guid: 9f716a8b063e44b77b2edf0ca93b373f, type: 2}
 --- !u!82 &1555700707294463703
 AudioSource:
