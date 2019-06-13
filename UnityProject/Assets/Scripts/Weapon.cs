@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour {
 	}
 
 	public void Reset() {
-		setNormal(0);
+		StartCoroutine (setNormal (0f));
 		ResetTime();
 	}
 

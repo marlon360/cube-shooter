@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartGame () {
+		score = 0;
+		userinterface.setScore (score);
 		level.StartGame ();
 		Camera.main.GetComponent<CameraFollow> ().switchToPlayerCam ();
 	}

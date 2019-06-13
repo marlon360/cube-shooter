@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/main.unity
     guid: 9369e93778a5c4ae991217e946071565
+  - enabled: 1
+    path: Assets/ml-agents.unity
+    guid: bfb26012ab929411289209175b6f6d9c
   m_configObjects: {}

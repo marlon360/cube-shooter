@@ -33,8 +33,8 @@ public class ShooterAgent : Agent {
 
     public override void CollectObservations() {
 
-            float rayDistance = 50f;
-            float[] rayAngles = { 30f, 60f, 90f, 120f, 150f, 180f, 210f, 240f, 270f, 300f, 330f };
+            float rayDistance = 60f;
+            float[] rayAngles = { 30f, 60f, 80f, 90f, 100f, 120f, 150f, 180f, 210f, 240f, 270f, 300f, 330f };
             string[] detectableObjects = { "Wall", "Enemy", "Item" };
             AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1f, 0f));
 
@@ -75,10 +75,11 @@ public class ShooterAgent : Agent {
 		foreach (GameObject enemy in enemies) {
 			Destroy (enemy);
 		}
+        weapon.Reset();
+        itemManager.Reset();
         level.Reset();
         gm.StartGame();
         player.Reset();
-        weapon.Reset();
         transform.position = new Vector3(-1.6f, 0, 2f);
     }
 
@@ -128,18 +129,18 @@ public class ShooterAgent : Agent {
     void Shoot(bool shoot) {
 
         if (shoot && weapon.canShoot()) {
-            AddReward(-0.001f);
+            AddReward(-0.01f);
             weapon.Shoot();
             weapon.timer = 0;
         }
         if (!shoot) {
-            weapon.ResetTime();
+			weapon.ResetTime ();
         }
 
     }
 
     public void GotHit() {
-        AddReward(-0.2f);
+        AddReward(-0.5f);
     }
 
     public void Death() {
@@ -152,7 +153,7 @@ public class ShooterAgent : Agent {
     }
 
     public void KilledEnemy() {
-        AddReward(0.2f);
+        AddReward(0.3f);
     }
 
 }

@@ -7571,14 +7571,14 @@ MonoBehaviour:
     _brainsToControl: []
   maxSteps: 1000000
   trainingConfiguration:
-    width: 80
-    height: 80
+    width: 192
+    height: 108
     qualityLevel: 0
-    timeScale: 10
+    timeScale: 8
     targetFrameRate: -1
   inferenceConfiguration:
-    width: 1280
-    height: 720
+    width: 1920
+    height: 1080
     qualityLevel: 5
     timeScale: 1
     targetFrameRate: 60
