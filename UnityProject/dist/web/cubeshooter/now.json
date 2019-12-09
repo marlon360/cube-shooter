@@ -8,12 +8,6 @@
             "headers": {
                 "Accept-Encoding": "br"
             }
-        },
-        {
-            "src": "/Template/.+",
-            "headers": {
-                "Accept-Encoding": "br"
-            }
         }
     ]
 }
